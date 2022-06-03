@@ -48,8 +48,8 @@
         </Label>
         <HBox alignment="CENTER" layoutX="450.0" layoutY="329.0" prefHeight="67.0" prefWidth="144.0" spacing="5.0">
             <children>
-                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Save" />
-                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Cancel" />
+                <Button mnemonicParsing="false" onAction="#onActionSave" prefHeight="30.0" prefWidth="60.0" text="Save" />
+                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="30.0" prefWidth="60.0" text="Cancel" />
             </children>
         </HBox>
       <HBox layoutX="300.0" layoutY="54.0" prefHeight="292.0" prefWidth="277.0">

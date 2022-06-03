@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <VBox layoutX="111.0" layoutY="148.0" prefHeight="104.0" prefWidth="225.0">
@@ -44,7 +43,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="184.0" layoutY="324.0" maxWidth="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Login" translateX="-30.0" />
-      <Button layoutX="215.0" layoutY="324.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Exit" translateX="20.0" />
+      <Button layoutX="184.0" layoutY="324.0" maxWidth="60.0" mnemonicParsing="false" onAction="#onActionLogin" prefHeight="30.0" prefWidth="60.0" text="Login" translateX="-30.0" />
+      <Button layoutX="215.0" layoutY="324.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="60.0" text="Exit" translateX="20.0" />
    </children>
 </AnchorPane>

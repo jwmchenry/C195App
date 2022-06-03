@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class UpdateCustomerController {
+public class CreateCustomerController {
 
     Stage stage;
     Parent scene;
@@ -19,7 +19,7 @@ public class UpdateCustomerController {
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
 
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerRecords.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();
@@ -29,7 +29,7 @@ public class UpdateCustomerController {
     @FXML
     void onActionSave(ActionEvent event) throws IOException {
 
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerRecords.fxml")));
         stage.setScene(new Scene(scene));
         stage.show();

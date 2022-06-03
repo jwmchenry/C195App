@@ -29,10 +29,10 @@
       </Label>
       <HBox alignment="TOP_CENTER" layoutX="26.0" layoutY="300.0" prefHeight="83.0" prefWidth="339.0" spacing="5.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Create" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Update" />
+            <Button mnemonicParsing="false" onAction="#onActionCreateCustomer" prefHeight="30.0" prefWidth="60.0" text="Create" />
+            <Button mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="30.0" prefWidth="60.0" text="Update" />
             <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Delete" />
-            <Button mnemonicParsing="false" prefHeight="30.0" text="Add Appointment" />
+            <Button mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="30.0" text="Add Appointment" />
          </children>
          <padding>
             <Insets top="5.0" />
@@ -40,8 +40,8 @@
       </HBox>
       <HBox alignment="BOTTOM_RIGHT" layoutX="868.0" layoutY="313.0" prefHeight="57.0" prefWidth="200.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Back" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Exit" />
+            <Button mnemonicParsing="false" onAction="#onActionMenuBack" prefHeight="30.0" prefWidth="60.0" text="Back" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="60.0" text="Exit" />
          </children>
       </HBox>
    </children>
