@@ -10,40 +10,41 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <VBox layoutX="111.0" layoutY="148.0" prefHeight="104.0" prefWidth="225.0">
+      <VBox layoutX="4.0" layoutY="148.0" prefHeight="104.0" prefWidth="300.0">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label text="Username" />
-                  <TextField />
+                  <Label fx:id="usernameLbl" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="135.0" text="Username" />
+                  <TextField fx:id="usernameTxt" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label text="Password" />
-                  <TextField />
+                  <Label fx:id="passwordLbl" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="137.0" text="Password" />
+                  <TextField fx:id="passwordTxt" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="225.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="225.0">
                <children>
-                  <Label text="Location: " />
-                  <Label text="LocationLabel" />
+                  <Label fx:id="locationTextLbl" text="Location: " />
+                  <Label fx:id="locationLbl" text="LocationLabel" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="21.0" prefWidth="225.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="225.0">
                <children>
-                  <Label text="Language: " />
-                  <Label text="LanguageLabel" />
+                  <Label fx:id="languageTextLbl" text="Language: " />
+                  <Label fx:id="languageLbl" text="English" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="87.0" layoutY="79.0" text="Customer Scheduling System">
+      <Label fx:id="titleLbl" layoutX="87.0" layoutY="79.0" text="Customer Scheduling System">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="184.0" layoutY="324.0" maxWidth="60.0" mnemonicParsing="false" onAction="#onActionLogin" prefHeight="30.0" prefWidth="60.0" text="Login" translateX="-30.0" />
-      <Button layoutX="215.0" layoutY="324.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="60.0" text="Exit" translateX="20.0" />
+      <Button fx:id="loginBtn" layoutX="179.0" layoutY="324.0" maxWidth="120.0" mnemonicParsing="false" onAction="#onActionLogin" prefHeight="30.0" prefWidth="75.0" text="Login" translateX="-40.0" />
+      <Button fx:id="exitBtn" layoutX="205.0" layoutY="324.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="75.0" text="Exit" translateX="30.0" />
+      <Label fx:id="errorLbl" layoutX="137.0" layoutY="131.0" textFill="RED" />
    </children>
 </AnchorPane>

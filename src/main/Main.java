@@ -7,7 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.time.ZoneId;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
+
+import static java.time.ZoneId.systemDefault;
 
 
 public class Main extends Application {
@@ -22,9 +27,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-        launch(args);
         JDBC.openConnection();
+        launch(args);
         JDBC.closeConnection();
 
     }
