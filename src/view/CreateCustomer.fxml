@@ -31,12 +31,12 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <TextField disable="true" editable="false" promptText="autogen - disabled" />
-                  <TextField layoutX="10.0" layoutY="10.0" />
-                  <TextField layoutX="10.0" layoutY="35.0" />
-                  <TextField layoutX="10.0" layoutY="60.0" />
-                  <TextField layoutX="10.0" layoutY="85.0" />
-                  <ComboBox prefWidth="150.0" />
-                  <ComboBox prefWidth="150.0" />
+                  <TextField fx:id="nameTxt" layoutX="10.0" layoutY="10.0" />
+                  <TextField fx:id="addressTxt" layoutX="10.0" layoutY="35.0" />
+                  <TextField fx:id="postalCodeTxt" layoutX="10.0" layoutY="60.0" />
+                  <TextField fx:id="phoneTxt" layoutX="10.0" layoutY="85.0" />
+                  <ComboBox fx:id="countryCmbBx" prefWidth="150.0" />
+                  <ComboBox fx:id="divisionCmbBx" prefWidth="150.0" />
                </children>
             </VBox>
          </children>

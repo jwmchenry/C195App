@@ -1,6 +1,6 @@
 package controller;
 
-import helper.usersDAOImpl;
+import helper.UsersHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -73,7 +72,7 @@ public class LoginController implements Initializable {
     @FXML
     void onActionLogin(ActionEvent event) throws IOException, SQLException {
 
-        ResultSet rs = usersDAOImpl.read();
+        ResultSet rs = UsersHelper.read();
 
         while (rs.next()) {
             if (rs.getString("User_Name").equals(usernameTxt.getText())) {

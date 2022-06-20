@@ -1,5 +1,6 @@
 package main;
 
+import helper.CustomersHelper;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
@@ -16,6 +20,24 @@ import static java.time.ZoneId.systemDefault;
 
 
 public class Main extends Application {
+
+    public static int customerIDCounter = 1;
+
+    public static int newCustomerID() throws SQLException {
+
+        ResultSet rs = CustomersHelper.read();
+
+        while (rs.next()) {
+
+           customerIDCounter = rs.getInt("Customer_ID");
+
+        }
+
+        customerIDCounter++;
+
+        return customerIDCounter;
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
