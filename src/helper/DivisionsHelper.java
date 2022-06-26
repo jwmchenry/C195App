@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DivisionsHelper {
+public abstract class DivisionsHelper {
 
     public static ResultSet read() throws SQLException {
         String sql = "SELECT * FROM first_level_divisions";

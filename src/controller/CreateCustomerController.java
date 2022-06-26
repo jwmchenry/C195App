@@ -1,9 +1,15 @@
 package controller;
 
+import helper.CountriesHelper;
 import helper.CustomersHelper;
+import helper.DivisionsHelper;
+import helper.JoinHelper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,23 +20,25 @@ import main.Main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CreateCustomerController {
+public class CreateCustomerController implements Initializable {
 
     Stage stage;
     Parent scene;
+
 
     @FXML
     private TextField addressTxt;
 
     @FXML
-    private ComboBox<?> countryCmbBx;
+    private ComboBox<String> countryCmbBx;
 
     @FXML
-    private ComboBox<?> divisionCmbBx;
+    private ComboBox<String> divisionCmbBx;
 
     @FXML
     private TextField nameTxt;
@@ -59,9 +67,17 @@ public class CreateCustomerController {
         String address = addressTxt.getText();
         String postalCode = postalCodeTxt.getText();
         String phoneNumber = phoneTxt.getText();
-//        int divisionID = (int) divisionCmbBx.getSelectionModel().getSelectedItem();
 
-        CustomersHelper.create(customerID, name, address, postalCode, phoneNumber, 4);
+        int divisionID = 0;
+        ResultSet rs = DivisionsHelper.read();
+
+        while (rs.next()) {
+            if (divisionCmbBx.getValue().equals(rs.getString("Division"))) {
+                divisionID = rs.getInt("Division_ID");
+            }
+        }
+
+        CustomersHelper.create(customerID, name, address, postalCode, phoneNumber, divisionID);
 
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerRecords.fxml")));
@@ -70,7 +86,42 @@ public class CreateCustomerController {
 
     }
 
+    @FXML
+    void onActionSelectCountry(ActionEvent event) throws SQLException {
+
+        ObservableList<String> divisionList = FXCollections.observableArrayList();
+        String countryName = countryCmbBx.getValue();
+        ResultSet rs = JoinHelper.divisionsCountriesRead();
+
+        while (rs.next()) {
+            if (countryName.equals(rs.getString("Country"))) {
+                divisionList.add(rs.getString("Division"));
+            }
+        }
+        divisionCmbBx.setItems(divisionList);
+    }
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<String> countryList = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = CountriesHelper.read();
+
+            String countryName;
+            while (rs.next()) {
+                countryName = rs.getString("Country");
+                countryList.add(countryName);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("SQL Error.");
+        }
+
+        countryCmbBx.setItems(countryList);
+
+
+
     }
 
 }

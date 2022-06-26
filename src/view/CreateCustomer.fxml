@@ -35,7 +35,7 @@
                   <TextField fx:id="addressTxt" layoutX="10.0" layoutY="35.0" />
                   <TextField fx:id="postalCodeTxt" layoutX="10.0" layoutY="60.0" />
                   <TextField fx:id="phoneTxt" layoutX="10.0" layoutY="85.0" />
-                  <ComboBox fx:id="countryCmbBx" prefWidth="150.0" />
+                  <ComboBox fx:id="countryCmbBx" onAction="#onActionSelectCountry" prefWidth="150.0" />
                   <ComboBox fx:id="divisionCmbBx" prefWidth="150.0" />
                </children>
             </VBox>
