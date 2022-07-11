@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,13 +31,13 @@
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <TextField disable="true" editable="false" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="35.0" />
-                        <ComboBox prefWidth="150.0" />
-                        <TextField layoutX="10.0" layoutY="60.0" />
-                        <TextField layoutX="10.0" layoutY="85.0" />
-                        <TextField />
+                        <TextField fx:id="apptIDTxt" disable="true" editable="false" />
+                        <TextField fx:id="titleTxt" layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="locationTxt" layoutX="10.0" layoutY="35.0" />
+                        <ComboBox fx:id="contactCmbBx" prefWidth="150.0" />
+                        <TextField fx:id="typeTxt" layoutX="10.0" layoutY="60.0" />
+                        <TextField fx:id="startTxt" layoutX="10.0" layoutY="85.0" />
+                        <TextField fx:id="endTxt" />
                     </children>
                 </VBox>
             </children>
@@ -70,9 +71,9 @@
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <TextField layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="189.0" />
-                        <TextField layoutX="10.0" layoutY="85.0" />
-                        <TextField />
+                  <TextArea fx:id="descTxt" prefHeight="112.0" prefWidth="189.0" />
+                        <TextField fx:id="customerIDTxt" layoutX="10.0" layoutY="85.0" />
+                        <TextField fx:id="userIDTxt" />
                     </children>
                 </VBox>
             </children>

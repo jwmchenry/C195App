@@ -21,7 +21,7 @@ public class MainMenuController {
     void onActionAppointmentSchedule(ActionEvent event) throws IOException {
 
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentSchedule.fxml")));
+        scene = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/view/AppointmentSchedule.fxml"))));
         stage.setScene(new Scene(scene));
         stage.show();
 
