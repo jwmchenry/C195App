@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -49,12 +51,17 @@
             <Insets top="5.0" />
          </padding>
       </HBox>
-      <HBox alignment="TOP_CENTER" layoutX="410.0" layoutY="309.0" prefHeight="77.0" prefWidth="282.0" spacing="25.0">
+      <HBox alignment="TOP_CENTER" layoutX="410.0" layoutY="309.0" prefHeight="30.0" prefWidth="282.0" spacing="25.0">
          <children>
-            <RadioButton fx:id="allRdBtn" mnemonicParsing="false" selected="true" text="All" />
-            <RadioButton fx:id="weeklyRdBtn" mnemonicParsing="false" text="Weekly" />
-            <RadioButton fx:id="monthlyRdBtn" mnemonicParsing="false" text="Monthly" />
+            <RadioButton fx:id="allRdBtn" mnemonicParsing="false" onAction="#onActionAllRadBtn" selected="true" text="All">
+               <toggleGroup>
+                  <ToggleGroup fx:id="weeklyMonthlyTglGrp" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="weeklyRdBtn" mnemonicParsing="false" onAction="#onActionWeeklyRadBtn" text="Weekly" toggleGroup="$weeklyMonthlyTglGrp" />
+            <RadioButton fx:id="monthlyRdBtn" mnemonicParsing="false" onAction="#onActionMonthlyRadBtn" text="Monthly" toggleGroup="$weeklyMonthlyTglGrp" />
          </children>
       </HBox>
+      <ComboBox fx:id="monthlyCmbBox" layoutX="410.0" layoutY="348.0" onAction="#onActionSelectMonth" prefWidth="150.0" visible="false" />
+      <ComboBox fx:id="yearCmbBox" layoutX="560.0" layoutY="348.0" onAction="#onActionSelectYear" prefHeight="25.0" prefWidth="79.0" visible="false" />
    </children>
 </AnchorPane>

@@ -24,26 +24,21 @@ public abstract class AppointmentsHelper {
         ps.setInt(8, customerID);
         ps.setInt(9, userID);
         ps.setInt(10, contactID);
-        if (ps.executeUpdate() > 0) {
-            return true;
-        }
-        return false;
+        return ps.executeUpdate() > 0;
     }
 
     public static ResultSet read() throws SQLException {
         String sql = "SELECT * FROM appointments";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
 
-        return rs;
+        return ps.executeQuery();
     }
 
     public static ResultSet read(int apptID) throws SQLException {
         String sql = "SELECT * FROM appointments WHERE Appointment_ID = " + apptID;
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
 
-        return rs;
+        return ps.executeQuery();
     }
 
     public static boolean update(int apptID, String title, String description, String location,
