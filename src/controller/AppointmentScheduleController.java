@@ -21,6 +21,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class AppointmentScheduleController implements Initializable {
@@ -131,8 +132,16 @@ public class AppointmentScheduleController implements Initializable {
             String description = rs.getString("Description");
             String location = rs.getString("Location");
             String type = rs.getString("Type");
-            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+
+            LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
+            DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String start = startDateTime.format(startFormatter);
+
+
+            LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
+            DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String end = endDateTime.format(endFormatter);
+
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
@@ -179,8 +188,15 @@ public class AppointmentScheduleController implements Initializable {
             String description = rs.getString("Description");
             String location = rs.getString("Location");
             String type = rs.getString("Type");
-            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+
+            LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
+            DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String start = startDateTime.format(startFormatter);
+
+            LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
+            DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String end = endDateTime.format(endFormatter);
+
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
@@ -198,7 +214,7 @@ public class AppointmentScheduleController implements Initializable {
             Appointment appointment = new Appointment(apptID, title, description, location, type, start, end, customerID,
                     userID, contact);
 
-            if (start.isBefore(LocalDateTime.now().plusDays(numberOfDays)) && start.isAfter(LocalDateTime.now())) {
+            if (startDateTime.isBefore(LocalDateTime.now().plusDays(numberOfDays)) && startDateTime.isAfter(LocalDateTime.now())) {
                 appointmentsList.add(appointment);
             }
 
@@ -231,8 +247,15 @@ public class AppointmentScheduleController implements Initializable {
             String description = rs.getString("Description");
             String location = rs.getString("Location");
             String type = rs.getString("Type");
-            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+
+            LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
+            DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String start = startDateTime.format(startFormatter);
+
+            LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
+            DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String end = endDateTime.format(endFormatter);
+
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
             int contactID = rs.getInt("Contact_ID");
@@ -250,7 +273,7 @@ public class AppointmentScheduleController implements Initializable {
             Appointment appointment = new Appointment(apptID, title, description, location, type, start, end, customerID,
                     userID, contact);
 
-            if (start.getMonthValue() == monthToChoose && start.getYear() == yearToChoose) {
+            if (startDateTime.getMonthValue() == monthToChoose && startDateTime.getYear() == yearToChoose) {
                 appointmentsList.add(appointment);
             }
 

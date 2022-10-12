@@ -23,6 +23,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -79,8 +80,17 @@ public class AddAppointmentController implements Initializable {
         String description = descTxt.getText();
         String location = locationTxt.getText();
         String type = typeTxt.getText();
-        LocalDateTime start = LocalDateTime.parse(startTxt.getText());
-        LocalDateTime end = LocalDateTime.parse(endTxt.getText());
+
+        String startText = startTxt.getText();
+        DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        String endText = endTxt.getText();
+        DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+
+        LocalDateTime start = LocalDateTime.parse(startText, startFormatter);
+        start.format(startFormatter);
+        LocalDateTime end = LocalDateTime.parse(endText, endFormatter);
+        end.format(endFormatter);
+
         int customerID = Integer.parseInt(customerIDTxt.getText());
         int userID = Integer.parseInt(userIDTxt.getText());
         int contactID = contactCmbBx.getValue().getContactID();

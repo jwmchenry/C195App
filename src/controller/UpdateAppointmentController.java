@@ -19,6 +19,7 @@ import model.Contact;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
@@ -77,8 +78,17 @@ public class UpdateAppointmentController {
         String description = descTxt.getText();
         String location = locationTxt.getText();
         String type = typeTxt.getText();
-        LocalDateTime start = LocalDateTime.parse(startTxt.getText());
-        LocalDateTime end = LocalDateTime.parse(endTxt.getText());
+
+        DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        LocalDateTime start = LocalDateTime.parse(startTxt.getText(), startFormatter);
+        startFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        start = LocalDateTime.parse(start.format(startFormatter));
+
+        DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        LocalDateTime end = LocalDateTime.parse(startTxt.getText(), endFormatter);
+        endFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        end = LocalDateTime.parse(end.format(endFormatter));
+
         int customerID = Integer.parseInt(customerIDTxt.getText());
         int userID = Integer.parseInt(userIDTxt.getText());
         int contactID = contactCmbBx.getValue().getContactID();
