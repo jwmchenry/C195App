@@ -63,5 +63,6 @@
       </HBox>
       <ComboBox fx:id="monthlyCmbBox" layoutX="410.0" layoutY="348.0" onAction="#onActionSelectMonth" prefWidth="150.0" visible="false" />
       <ComboBox fx:id="yearCmbBox" layoutX="560.0" layoutY="348.0" onAction="#onActionSelectYear" prefHeight="25.0" prefWidth="79.0" visible="false" />
+      <Label layoutX="501.0" layoutY="83.0" text="All times are local" />
    </children>
 </AnchorPane>

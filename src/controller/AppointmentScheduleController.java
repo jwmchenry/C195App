@@ -21,6 +21,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -81,6 +83,10 @@ public class AppointmentScheduleController implements Initializable {
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) throws SQLException {
+        if (apptTableView.getSelectionModel().isEmpty()) {
+            return;
+        }
+
         AppointmentsHelper.delete(apptTableView.getSelectionModel().getSelectedItem().getApptID());
         populateAppointments();
     }
@@ -136,11 +142,20 @@ public class AppointmentScheduleController implements Initializable {
             LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
             DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String start = startDateTime.format(startFormatter);
-
+            LocalDateTime parsedStart = LocalDateTime.parse(start, startFormatter);
+            ZonedDateTime zonedStartUTC = ZonedDateTime.of(parsedStart, ZoneId.of("UTC"));
+            ZonedDateTime zonedStartUser = zonedStartUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalStart = zonedStartUser.toLocalDateTime();
+            start = zonedLocalStart.format(startFormatter);
 
             LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
             DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String end = endDateTime.format(endFormatter);
+            LocalDateTime parsedEnd = LocalDateTime.parse(end, endFormatter);
+            ZonedDateTime zonedEndUTC = ZonedDateTime.of(parsedEnd, ZoneId.of("UTC"));
+            ZonedDateTime zonedEndUser = zonedEndUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalEnd = zonedEndUser.toLocalDateTime();
+            end = zonedLocalEnd.format(startFormatter);
 
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
@@ -192,10 +207,21 @@ public class AppointmentScheduleController implements Initializable {
             LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
             DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String start = startDateTime.format(startFormatter);
+            LocalDateTime parsedStart = LocalDateTime.parse(start, startFormatter);
+            ZonedDateTime zonedStartUTC = ZonedDateTime.of(parsedStart, ZoneId.of("UTC"));
+            ZonedDateTime zonedStartUser = zonedStartUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalStart = zonedStartUser.toLocalDateTime();
+            start = zonedLocalStart.format(startFormatter);
+
 
             LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
             DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String end = endDateTime.format(endFormatter);
+            LocalDateTime parsedEnd = LocalDateTime.parse(end, endFormatter);
+            ZonedDateTime zonedEndUTC = ZonedDateTime.of(parsedEnd, ZoneId.of("UTC"));
+            ZonedDateTime zonedEndUser = zonedEndUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalEnd = zonedEndUser.toLocalDateTime();
+            end = zonedLocalEnd.format(startFormatter);
 
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");
@@ -251,10 +277,21 @@ public class AppointmentScheduleController implements Initializable {
             LocalDateTime startDateTime = rs.getTimestamp("Start").toLocalDateTime();
             DateTimeFormatter startFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String start = startDateTime.format(startFormatter);
+            LocalDateTime parsedStart = LocalDateTime.parse(start, startFormatter);
+            ZonedDateTime zonedStartUTC = ZonedDateTime.of(parsedStart, ZoneId.of("UTC"));
+            ZonedDateTime zonedStartUser = zonedStartUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalStart = zonedStartUser.toLocalDateTime();
+            start = zonedLocalStart.format(startFormatter);
+
 
             LocalDateTime endDateTime = rs.getTimestamp("End").toLocalDateTime();
             DateTimeFormatter endFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
             String end = endDateTime.format(endFormatter);
+            LocalDateTime parsedEnd = LocalDateTime.parse(end, endFormatter);
+            ZonedDateTime zonedEndUTC = ZonedDateTime.of(parsedEnd, ZoneId.of("UTC"));
+            ZonedDateTime zonedEndUser = zonedEndUTC.withZoneSameInstant(ZoneId.systemDefault());
+            LocalDateTime zonedLocalEnd = zonedEndUser.toLocalDateTime();
+            end = zonedLocalEnd.format(startFormatter);
 
             int customerID = rs.getInt("Customer_ID");
             int userID = rs.getInt("User_ID");

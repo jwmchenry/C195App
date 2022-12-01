@@ -29,7 +29,7 @@
                         <Insets right="5.0" />
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="189.0" spacing="10.0">
                     <children>
                         <TextField fx:id="apptIDTxt" disable="true" editable="false" promptText="autogen - disabled" />
                         <TextField fx:id="titleTxt" layoutX="10.0" layoutY="10.0" />
@@ -78,5 +78,10 @@
             </VBox>
          </children>
       </HBox>
+      <Label layoutX="56.0" layoutY="336.0" text="Enter times in Eastern Standard Time" textFill="#3fb5ff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
