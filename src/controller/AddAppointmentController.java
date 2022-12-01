@@ -15,6 +15,7 @@ import main.Main;
 import model.Contact;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -86,6 +87,7 @@ public class AddAppointmentController implements Initializable {
 
         LocalDateTime start = LocalDateTime.parse(startText, startFormatter);
         LocalDateTime end = LocalDateTime.parse(endText, endFormatter);
+
         String startTimeOnlyString = start.format(startTimeOnlyFormatter);
         LocalTime startTimeOnly = LocalTime.parse(startTimeOnlyString, startTimeOnlyFormatter);
 
@@ -104,7 +106,25 @@ public class AddAppointmentController implements Initializable {
                     "Incorrect Scheduling", "Incorrect Scheduling");
             return;
         }
+        ZonedDateTime zonedStart = ZonedDateTime.of(start, ZoneId.of("US/Eastern"));
+        ZonedDateTime startOverlap = zonedStart.withZoneSameInstant(ZoneId.of("UTC"));
+        LocalDateTime startOverlapLDT = startOverlap.toLocalDateTime();
 
+        ZonedDateTime zonedEnd = ZonedDateTime.of(end, ZoneId.of("US/Eastern"));
+        ZonedDateTime endOverlap = zonedEnd.withZoneSameInstant(ZoneId.of("UTC"));
+        LocalDateTime endOverlapLDT = endOverlap.toLocalDateTime();
+
+        ResultSet rs = AppointmentsHelper.read();
+        while (rs.next()) {
+            if ((startOverlapLDT.isAfter(rs.getTimestamp("Start").toLocalDateTime()) || startOverlapLDT.isEqual(rs.getTimestamp("Start").toLocalDateTime()))
+                    && (endOverlapLDT.isBefore(rs.getTimestamp("End").toLocalDateTime()) || endOverlapLDT.isEqual(rs.getTimestamp("End").toLocalDateTime())))
+            {
+                infoBox("This appointment time overlaps with an existing appointment. Please choose a different time.",
+                        "Overlapping Appointments", "Overlapping Appointments");
+                return;
+            }
+
+        }
 
         int customerID = Integer.parseInt(customerIDTxt.getText());
         int userID = Integer.parseInt(userIDTxt.getText());

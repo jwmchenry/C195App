@@ -36,8 +36,8 @@
                         <TextField fx:id="locationTxt" layoutX="10.0" layoutY="35.0" />
                   <ComboBox fx:id="contactCmbBx" prefWidth="150.0" />
                         <TextField fx:id="typeTxt" layoutX="10.0" layoutY="60.0" />
-                        <TextField fx:id="startTxt" layoutX="10.0" layoutY="85.0" />
-                  <TextField fx:id="endTxt" />
+                        <TextField fx:id="startTxt" layoutX="10.0" layoutY="85.0" promptText="MM-DD-YYYY HH:mm" />
+                  <TextField fx:id="endTxt" promptText="MM-DD-YYYY HH:mm" />
                     </children>
                 </VBox>
             </children>

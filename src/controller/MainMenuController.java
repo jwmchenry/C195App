@@ -1,17 +1,28 @@
 package controller;
 
+import helper.AppointmentsHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class MainMenuController {
+import static controller.AddAppointmentController.infoBox;
+
+public class MainMenuController implements Initializable {
 
     Stage stage;
     Parent scene;
@@ -58,4 +69,23 @@ public class MainMenuController {
     void onActionReports(ActionEvent event) throws IOException {
     }
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            ResultSet rs = AppointmentsHelper.read();
+            while (rs.next()) {
+                ZonedDateTime start = ZonedDateTime.of(rs.getTimestamp("Start").toLocalDateTime(), ZoneId.of("UTC"));
+                ZonedDateTime startLocalZone = start.withZoneSameInstant(ZoneId.systemDefault());
+                LocalDateTime startLocalTime = startLocalZone.toLocalDateTime();
+                if ((startLocalTime.isEqual(LocalDateTime.now()) || startLocalTime.isAfter(LocalDateTime.now())) &&
+                        (startLocalTime.isEqual(LocalDateTime.now().plusMinutes(15)) || startLocalTime.isBefore(LocalDateTime.now().plusMinutes(15)))) {
+                    infoBox("You have an upcoming appointment at " + rs.getTimestamp("Start") + ".",
+                            "Upcoming Appointment", "Upcoming Appointment");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
