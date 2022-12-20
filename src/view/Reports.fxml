@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="579.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="1000.0" spacing="10.0">
+         <children>
+            <Label text="Appointment Counter Report">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="156.0" spacing="10.0">
+               <children>
+                  <Label text="Appointment Type" />
+                  <Label text="Appointment Month" />
+                  <Label text="Number of Appointments" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="320.0" prefWidth="154.0">
+               <children>
+                  <ComboBox fx:id="apptTypeCmbBx" onAction="#onActionSelectType" prefWidth="150.0" />
+                  <ComboBox fx:id="apptMonthCmbBx" onAction="#onActionSelectMonth" prefWidth="150.0" />
+                  <Label fx:id="resultTxt" text="N/A">
+                     <padding>
+                        <Insets top="4.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="100.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </HBox>
+      <Line endX="980.0" endY="100.0" startX="20.0" startY="100.0">
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </Line>
+      <HBox layoutX="40.0" layoutY="120.0" prefHeight="262.0" prefWidth="921.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="240.0" prefWidth="937.0">
+               <children>
+                  <Label text="Contact Schedule Report">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="contactCmbBx" onAction="#onActionSelectContact" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="7.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <TableView fx:id="contactTableView" prefHeight="194.0" prefWidth="921.0">
+                    <columns>
+                      <TableColumn fx:id="apptIDCol" prefWidth="49.0" text="Appt ID" />
+                      <TableColumn fx:id="titleCol" prefWidth="152.0" text="Title" />
+                        <TableColumn fx:id="typeCol" prefWidth="139.0" text="Type" />
+                        <TableColumn fx:id="descCol" prefWidth="201.0" text="Description" />
+                        <TableColumn fx:id="startCol" prefWidth="152.0" text="Start" />
+                        <TableColumn fx:id="endCol" prefWidth="149.0" text="End" />
+                        <TableColumn fx:id="customerIDCol" minWidth="0.0" prefWidth="78.0" text="Customer ID" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Line endX="980.0" endY="420.0" startX="20.0" startY="420.0" />
+      <HBox alignment="TOP_CENTER" layoutX="203.0" layoutY="434.0" prefHeight="180.0" prefWidth="595.0">
+         <children>
+            <Label text="Location Counter Report">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </Label>
+            <VBox alignment="TOP_RIGHT" prefHeight="180.0" prefWidth="160.0">
+               <children>
+                  <Label text="Location">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Number of Appointments">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Domestic Customers">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+                  <Label text="International Customers">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="180.0" prefWidth="160.0">
+               <children>
+                  <ComboBox fx:id="locationCmbBx" onAction="#onActionSelectLocation" prefWidth="150.0" />
+                  <Label fx:id="locationResultTxt" alignment="TOP_LEFT" text="N/A">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="domesticResultTxt" text="N/A">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="intlResultTxt" text="N/A">
+                     <padding>
+                        <Insets bottom="4.0" top="4.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <Button layoutX="839.0" layoutY="559.0" maxWidth="60.0" mnemonicParsing="false" onAction="#onActionMenuBack" prefHeight="30.0" prefWidth="60.0" text="Back" />
+      <Button layoutX="909.0" layoutY="559.0" mnemonicParsing="false" onAction="#onActionExit" prefHeight="30.0" prefWidth="60.0" text="Exit" />
+   </children>
+</AnchorPane>

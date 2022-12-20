@@ -1,5 +1,6 @@
 package controller;
 
+import functionalInterfaces.UpcomingCheck;
 import helper.AppointmentsHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,8 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static controller.AddAppointmentController.infoBox;
+import static main.Main.infoBox;
+
 
 public class MainMenuController implements Initializable {
 
@@ -67,11 +69,16 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void onActionReports(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/Reports.fxml")));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /**
+     * This lambda checks if there are any upcoming appointments. 
+     */
+    public static UpcomingCheck UC = () -> {
         try {
             ResultSet rs = AppointmentsHelper.read();
             while (rs.next()) {
@@ -82,10 +89,22 @@ public class MainMenuController implements Initializable {
                         (startLocalTime.isEqual(LocalDateTime.now().plusMinutes(15)) || startLocalTime.isBefore(LocalDateTime.now().plusMinutes(15)))) {
                     infoBox("You have an upcoming appointment at " + rs.getTimestamp("Start") + ".",
                             "Upcoming Appointment", "Upcoming Appointment");
+                    return;
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch(SQLException e) {
             e.printStackTrace();
         }
+        infoBox("You have no upcoming appointments.", "No Appointments", "No Appointments");
+    };
+
+    public static void upcomingAppointment() throws SQLException {
+        UC.checkAppointment();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

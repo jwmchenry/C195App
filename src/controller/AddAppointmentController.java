@@ -22,9 +22,10 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static main.Main.infoBox;
 
 
 public class AddAppointmentController implements Initializable {
@@ -139,13 +140,7 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-    public static void infoBox(String infoMessage, String titleBar, String headerMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titleBar);
-        alert.setHeaderText(headerMessage);
-        alert.setContentText(infoMessage);
-        alert.showAndWait();
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

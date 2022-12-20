@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import javax.xml.transform.Result;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -62,6 +64,13 @@ public class Main extends Application {
         return apptIDCounter;
     }
 
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -72,8 +81,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
+        System.out.println(LocalDateTime.now().getMonth().getDisplayName(TextStyle.FULL, Locale.US).equals("December"));
+
+
         launch(args);
         JDBC.closeConnection();
 
