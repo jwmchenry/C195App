@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -23,7 +22,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
-
+/**
+ * This class is responsible for the update appointment form.
+ */
 public class UpdateAppointmentController {
 
     Stage stage;
@@ -59,7 +60,11 @@ public class UpdateAppointmentController {
     @FXML
     private TextField userIDTxt;
 
-
+    /**
+     * This method cancels the update and returns to the previous menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
 
@@ -70,6 +75,12 @@ public class UpdateAppointmentController {
 
     }
 
+    /**
+     * This method saves the information for the appointment to the database.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSave(ActionEvent event) throws IOException, SQLException {
 
@@ -102,6 +113,11 @@ public class UpdateAppointmentController {
 
     }
 
+    /**
+     * This method exists so that the appointment information can be populated upon initialization.
+     * @param appointment
+     * @throws SQLException
+     */
     public void sendAppointment(Appointment appointment) throws SQLException {
 
         ObservableList<Contact> contacts = ContactsHelper.contactList();

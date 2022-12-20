@@ -23,3 +23,13 @@ Password: test
 Time: 2022-12-18T16:54:38.393662800
 Successful login
 
+Username: test
+Password: test
+Time: 2022-12-20T12:45:43.880893700
+Successful login
+
+Username: test
+Password: test
+Time: 2022-12-20T12:58:43.675094300
+Successful login
+

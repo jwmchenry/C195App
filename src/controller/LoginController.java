@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,9 +22,12 @@ import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
+import static controller.MainMenuController.UC;
 import static java.time.ZoneId.systemDefault;
 
+/**
+ * This class is responsible for the user logging into the application.
+ */
 public class LoginController implements Initializable {
 
     Stage stage;
@@ -67,12 +69,22 @@ public class LoginController implements Initializable {
     @FXML
     private TextField usernameTxt;
 
-
+    /**
+     * This method exits the application.
+     * @param event
+     */
     @FXML
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * This method is responsible for recording login activity and checking login credentials. Additionally, this is
+     * where the lambda is called from the MainMenuController to check if there are any upcoming appointments.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionLogin(ActionEvent event) throws IOException, SQLException {
 
@@ -102,10 +114,10 @@ public class LoginController implements Initializable {
             scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/MainMenu.fxml")));
             stage.setScene(new Scene(scene));
             stage.show();
-            MainMenuController.upcomingAppointment();
+            UC.checkAppointment();
         } else {
             pw.println("Unsuccessful login");
-            errorLbl.setText(textToSet("Username or password was incorrect") + ".");
+            errorLbl.setText(TS.setText("Username or password was incorrect") + ".");
             pw.println("");
             pw.close();
         }
@@ -125,32 +137,26 @@ public class LoginController implements Initializable {
 
         return t;
     };
+
+    /**
+     * This method is responsible for setting the language of the login page using the system default language,
+     * and to do this a lambda has been created to handle the translations if needed.
+     * @param url
+     * @param resourceBundle
+     */
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-        //Locale.setDefault(new Locale("fr"));
         locationLbl.setText(String.valueOf(systemDefault()));
 
         titleLbl.setText(TS.setText("Customer Scheduling System"));
-        usernameLbl.setText(textToSet("username"));
-        passwordLbl.setText(textToSet("password"));
-        locationTextLbl.setText(textToSet("location") + ": ");
-        languageTextLbl.setText(textToSet("language") + ": ");
-        languageLbl.setText(textToSet("English"));
-        loginBtn.setText(textToSet("Login"));
-        exitBtn.setText(textToSet("Exit"));
+        usernameLbl.setText(TS.setText("username"));
+        passwordLbl.setText(TS.setText("password"));
+        locationTextLbl.setText(TS.setText("location") + ": ");
+        languageTextLbl.setText(TS.setText("language") + ": ");
+        languageLbl.setText(TS.setText("English"));
+        loginBtn.setText(TS.setText("Login"));
+        exitBtn.setText(TS.setText("Exit"));
 
     }
 
-    public static String textToSet(String text) {
-
-        String translatedText = "";
-        ResourceBundle rb = ResourceBundle.getBundle("utilities/Lang", Locale.forLanguageTag("fr"));
-
-        if (Locale.getDefault().getLanguage().equals("fr")) {
-            translatedText = rb.getString(text);
-            return translatedText;
-        }
-        
-        return text;
-    }
 }

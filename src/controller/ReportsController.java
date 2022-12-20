@@ -3,7 +3,6 @@ package controller;
 import helper.AppointmentsHelper;
 import helper.ContactsHelper;
 import helper.CustomersHelper;
-import helper.JoinHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -31,6 +29,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class is responsible for displaying reports to the user.
+ */
 public class ReportsController implements Initializable {
 
     @FXML
@@ -86,6 +87,11 @@ public class ReportsController implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * This method displays the number of appointments in the current month/type combo.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectMonth(ActionEvent event) throws SQLException {
         ResultSet rs = AppointmentsHelper.read();
@@ -108,6 +114,11 @@ public class ReportsController implements Initializable {
         counter = 0;
     }
 
+    /**
+     * This method displays the number of appointments in the current month/type combo.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectType(ActionEvent event) throws SQLException {
         ResultSet rs = AppointmentsHelper.read();
@@ -130,6 +141,11 @@ public class ReportsController implements Initializable {
         counter = 0;
     }
 
+    /**
+     * This method displays the appointments associated with the selected contact.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectContact(ActionEvent event) throws SQLException {
         ResultSet rs = AppointmentsHelper.read();
@@ -195,6 +211,11 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * This method displays the number of appointments by location.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectLocation(ActionEvent event) throws SQLException {
 
@@ -213,11 +234,20 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * This method exits the application.
+     * @param event
+     */
     @FXML
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * This method returns to the main menu on click.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionMenuBack(ActionEvent event) throws IOException {
 
@@ -228,6 +258,11 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * This method populates the combo boxes and displays how many international and domestic customers currently exist.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

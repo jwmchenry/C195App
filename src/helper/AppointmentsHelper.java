@@ -8,11 +8,28 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+/**
+ * This class is used to consolidate the Appointments database manipulation.
+ */
 public abstract class AppointmentsHelper {
 
-    public static boolean create(int apptID, String title, String description, String location,
-                                 String type, ZonedDateTime startDateTime, ZonedDateTime endDateTime,
-                                 int customerID, int userID, int contactID) throws SQLException {
+    /**
+     * This method creates an appointment in the appointments database.
+     * @param apptID
+     * @param title
+     * @param description
+     * @param location
+     * @param type
+     * @param startDateTime
+     * @param endDateTime
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @throws SQLException
+     */
+    public static void create(int apptID, String title, String description, String location,
+                              String type, ZonedDateTime startDateTime, ZonedDateTime endDateTime,
+                              int customerID, int userID, int contactID) throws SQLException {
         System.out.println(startDateTime.toString());
         String sql = "INSERT INTO appointments (Appointment_ID, Title, Description, Location, Type, Start, End," +
                 " Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ? ,? ,?)";
@@ -32,9 +49,14 @@ public abstract class AppointmentsHelper {
         ps.setInt(8, customerID);
         ps.setInt(9, userID);
         ps.setInt(10, contactID);
-        return ps.executeUpdate() > 0;
+        ps.executeUpdate();
     }
 
+    /**
+     * This method returns the appointments database information for use.
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet read() throws SQLException {
         String sql = "SELECT * FROM appointments";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -42,6 +64,12 @@ public abstract class AppointmentsHelper {
         return ps.executeQuery();
     }
 
+    /**
+     * This method returns the appointments database information given an appointment ID.
+     * @param apptID
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet read(int apptID) throws SQLException {
         String sql = "SELECT * FROM appointments WHERE Appointment_ID = " + apptID;
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -49,6 +77,21 @@ public abstract class AppointmentsHelper {
         return ps.executeQuery();
     }
 
+    /**
+     * This method updates a currently submitted appointment in the database.
+     * @param apptID
+     * @param title
+     * @param description
+     * @param location
+     * @param type
+     * @param startDateTime
+     * @param endDateTime
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @return
+     * @throws SQLException
+     */
     public static boolean update(int apptID, String title, String description, String location,
                                    String type, LocalDateTime startDateTime, LocalDateTime endDateTime,
                                    int customerID, int userID, int contactID) throws SQLException {
@@ -74,14 +117,17 @@ public abstract class AppointmentsHelper {
 
     }
 
-    public static boolean delete(int apptID) throws SQLException {
+    /**
+     * This method deletes an appointment from the database.
+     * @param apptID
+     * @throws SQLException
+     */
+    public static void delete(int apptID) throws SQLException {
         String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, apptID);
 
         if (ps.executeUpdate() > 0) {
-            return true;
         }
-        return false;
     }
 }

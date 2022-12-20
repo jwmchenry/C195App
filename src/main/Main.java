@@ -9,30 +9,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.TimeZone;
-
-import static java.time.ZoneId.systemDefault;
 
 
+/**
+ * This class is the entry point into the application.
+ */
 public class Main extends Application {
 
     public static int customerIDCounter = 1;
     public static int apptIDCounter = 1;
 
+    /**
+     * This method is a counter that will give a customer a unique ID based on positive increments.
+     * @return
+     * @throws SQLException
+     */
     public static int newCustomerID() throws SQLException {
 
         ResultSet rs = CustomersHelper.read();
@@ -49,6 +43,11 @@ public class Main extends Application {
 
     }
 
+    /**
+     * This method is a counter that will give an appointment a unique ID based on positive increments.
+     * @return
+     * @throws SQLException
+     */
     public static int newApptID() throws SQLException {
 
         ResultSet rs = AppointmentsHelper.read();
@@ -64,6 +63,12 @@ public class Main extends Application {
         return apptIDCounter;
     }
 
+    /**
+     * This is a method that will create an alert with the given arguments.
+     * @param infoMessage
+     * @param titleBar
+     * @param headerMessage
+     */
     public static void infoBox(String infoMessage, String titleBar, String headerMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titleBar);
@@ -72,6 +77,11 @@ public class Main extends Application {
         alert.showAndWait();
     }
 
+    /**
+     * This method begins the application.
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -81,11 +91,13 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * This method is the starting point of the application and deals with database connectivity.
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
-        System.out.println(LocalDateTime.now().getMonth().getDisplayName(TextStyle.FULL, Locale.US).equals("December"));
-
-
         launch(args);
         JDBC.closeConnection();
 

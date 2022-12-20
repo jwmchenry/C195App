@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -26,6 +25,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * This class is responsible for populating a table view of appointments.
+ */
 public class AppointmentScheduleController implements Initializable {
 
     Stage stage;
@@ -81,6 +83,11 @@ public class AppointmentScheduleController implements Initializable {
     @FXML
     private ComboBox<Integer> yearCmbBox;
 
+    /**
+     * This method deletes an appointment from the appointment database.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionDeleteAppointment(ActionEvent event) throws SQLException {
         if (apptTableView.getSelectionModel().isEmpty()) {
@@ -91,11 +98,20 @@ public class AppointmentScheduleController implements Initializable {
         populateAppointments();
     }
 
+    /**
+     * This method closes the application.
+     * @param event
+     */
     @FXML
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * This method returns to the main menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionMenuBack(ActionEvent event) throws IOException {
 
@@ -106,6 +122,12 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This method moves to the update window where an appointment can be updated, automatically populating the information.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionUpdateAppointment(ActionEvent event) throws IOException, SQLException {
 
@@ -127,6 +149,10 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This method populates the table view with appointments from the database.
+     * @throws SQLException
+     */
     public void populateAppointments() throws SQLException {
 
         ResultSet rs = AppointmentsHelper.read();
@@ -192,6 +218,11 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This is an overloaded method that populates appointments.
+     * @param numberOfDays
+     * @throws SQLException
+     */
     public void populateAppointments(int numberOfDays) throws SQLException {
 
         ResultSet rs = AppointmentsHelper.read();
@@ -262,6 +293,12 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This is an overloaded method that populates appointments.
+     * @param monthToChoose
+     * @param yearToChoose
+     * @throws SQLException
+     */
     public void populateAppointments( int monthToChoose, int yearToChoose) throws SQLException {
 
         ResultSet rs = AppointmentsHelper.read();
@@ -332,6 +369,11 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This method is run when the window is initialized and takes care of populating combo boxes and table views.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         isInitializing = true;
@@ -359,6 +401,11 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This method shows the appointments from a month/year standpoint.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionMonthlyRadBtn(ActionEvent event) throws SQLException {
         monthlyCmbBox.setVisible(true);
@@ -368,7 +415,11 @@ public class AppointmentScheduleController implements Initializable {
         populateAppointments(monthlyCmbBox.getSelectionModel().getSelectedIndex() + 1, yearCmbBox.getValue());
     }
 
-
+    /**
+     * This method shows appointments from a weekly standpoint.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionWeeklyRadBtn(ActionEvent event) throws SQLException {
         populateAppointments(7);
@@ -376,6 +427,11 @@ public class AppointmentScheduleController implements Initializable {
         yearCmbBox.setVisible(false);
     }
 
+    /**
+     * This method shows all appointments.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionAllRadBtn(ActionEvent event) throws SQLException {
         populateAppointments();
@@ -383,6 +439,11 @@ public class AppointmentScheduleController implements Initializable {
         yearCmbBox.setVisible(false);
     }
 
+    /**
+     * This method allows the user to select a month to populate the appointments.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectMonth(ActionEvent event) throws SQLException {
         if (!isInitializing) {
@@ -391,6 +452,11 @@ public class AppointmentScheduleController implements Initializable {
 
     }
 
+    /**
+     * This method allows the user to select a year to populate the appointments.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectYear(ActionEvent event) throws SQLException {
         if (!isInitializing) {

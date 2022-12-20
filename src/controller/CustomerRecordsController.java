@@ -17,8 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
-
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -26,6 +24,9 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class is responsible for displaying the customers on record.
+ */
 public class CustomerRecordsController implements Initializable {
 
     Stage stage;
@@ -55,11 +56,20 @@ public class CustomerRecordsController implements Initializable {
     @FXML
     private TableColumn<Customer, String> postalCodeCol;
 
+    /**
+     * This method exits the application.
+     * @param event
+     */
     @FXML
     void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * This method returns to the previous menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionMenuBack(ActionEvent event) throws IOException {
 
@@ -70,6 +80,11 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * This method takes the user to the form to add an appointment.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionAddAppointment(ActionEvent event) throws IOException {
 
@@ -80,6 +95,11 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * This method takes the user to the form to create a customer.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCreateCustomer(ActionEvent event) throws IOException {
 
@@ -90,12 +110,24 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+
+    /**
+     * This method deletes the currently selected customer on the customers table view.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws SQLException {
         CustomersHelper.delete(customersTableView.getSelectionModel().getSelectedItem().getCustomerID());
         populateCustomers();
     }
 
+    /**
+     * This method sends the user to the update customer form with the customer information populated automatically.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionUpdateCustomer(ActionEvent event) throws IOException, SQLException {
 
@@ -117,6 +149,9 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * This method populates the customers on the table view.
+     */
     public void populateCustomers() {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
         try {
@@ -174,6 +209,11 @@ public class CustomerRecordsController implements Initializable {
 
     }
 
+    /**
+     * This method calls the method that populates the customers when the form is initialized.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateCustomers();

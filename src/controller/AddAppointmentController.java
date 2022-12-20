@@ -24,10 +24,11 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import static main.Main.infoBox;
 
-
+/**
+ * This class provides the controlling methods for the GUI controls of the appointment adding interface.
+ */
 public class AddAppointmentController implements Initializable {
 
     Stage stage;
@@ -60,6 +61,11 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private TextField userIDTxt;
 
+    /**
+     * This method does not save the appointment and returns to the main menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
 
@@ -70,6 +76,12 @@ public class AddAppointmentController implements Initializable {
 
     }
 
+    /**
+     * This method takes the information input and creates an appointment to be stored in the database.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSave(ActionEvent event) throws IOException, SQLException {
 
@@ -141,7 +153,11 @@ public class AddAppointmentController implements Initializable {
     }
 
 
-
+    /**
+     * this method is run when the window is initialized and populates the contact combo box.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

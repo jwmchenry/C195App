@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -20,16 +19,21 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
 import static main.Main.infoBox;
 
-
+/**
+ * This class is responsbile for controlling the main menu that is shown after a successful login.
+ */
 public class MainMenuController implements Initializable {
 
     Stage stage;
     Parent scene;
 
-
+    /**
+     * This method takes the user to the Appointment Schedule menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionAppointmentSchedule(ActionEvent event) throws IOException {
 
@@ -40,6 +44,11 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * This method takes the user to the Customer Records menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCustomerRecords(ActionEvent event) throws IOException {
 
@@ -50,6 +59,10 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * This method exits the application.
+     * @param event
+     */
     @FXML
     void onActionExit(ActionEvent event) {
 
@@ -57,6 +70,11 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * This method logs the user out but does not exit the application.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionLogout(ActionEvent event) throws IOException {
 
@@ -67,6 +85,11 @@ public class MainMenuController implements Initializable {
 
     }
 
+    /**
+     * This method takes the user to the reports menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionReports(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -99,10 +122,11 @@ public class MainMenuController implements Initializable {
         infoBox("You have no upcoming appointments.", "No Appointments", "No Appointments");
     };
 
-    public static void upcomingAppointment() throws SQLException {
-        UC.checkAppointment();
-    }
-
+    /**
+     * This method is run when the menu is initialized.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

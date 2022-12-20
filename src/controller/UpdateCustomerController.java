@@ -16,9 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.Main;
 import model.Customer;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -26,6 +24,9 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class is responsible for the update customer form.
+ */
 public class UpdateCustomerController implements Initializable {
 
     Stage stage;
@@ -52,7 +53,11 @@ public class UpdateCustomerController implements Initializable {
     @FXML
     private TextField postalCodeTxt;
 
-
+    /**
+     * This method cancels the update and returns the previous form.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
 
@@ -63,6 +68,12 @@ public class UpdateCustomerController implements Initializable {
 
     }
 
+    /**
+     * This method saves the customer information and updates the database.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSave(ActionEvent event) throws IOException, SQLException {
         int customerID = Integer.parseInt(idTxt.getText());
@@ -88,11 +99,21 @@ public class UpdateCustomerController implements Initializable {
         stage.show();
     }
 
+    /**
+     * This method is called when the window is initialized.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
+    /**
+     * This method sets the appropriate first level divisions in the division combo box based on country chosen.
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void onActionSelectCountry(ActionEvent actionEvent) throws SQLException {
         ObservableList<String> divisionList = FXCollections.observableArrayList();
         String countryName = countryCmbBx.getValue();
@@ -106,6 +127,11 @@ public class UpdateCustomerController implements Initializable {
         divisionCmbBx.setItems(divisionList);
     }
 
+    /**
+     * This method allows the customer information to be sent to the update form for modifying.
+     * @param customer
+     * @throws SQLException
+     */
     public void sendCustomer(Customer customer) throws SQLException {
 
 

@@ -13,10 +13,6 @@ public class Contact {
         return contactID;
     }
 
-    public void setContactID(int contactID) {
-        this.contactID = contactID;
-    }
-
     public String getName() {
         return name;
     }

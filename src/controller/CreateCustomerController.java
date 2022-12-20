@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Main;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -25,6 +24,9 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class is responsible for creating a customer in the database.
+ */
 public class CreateCustomerController implements Initializable {
 
     Stage stage;
@@ -49,6 +51,11 @@ public class CreateCustomerController implements Initializable {
     @FXML
     private TextField postalCodeTxt;
 
+    /**
+     * This method cancels the creation and returns to the previous menu.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onActionCancel(ActionEvent event) throws IOException {
 
@@ -59,6 +66,12 @@ public class CreateCustomerController implements Initializable {
 
     }
 
+    /**
+     * This method saves the creation of the customer and returns to the previous menu.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onActionSave(ActionEvent event) throws IOException, SQLException {
 
@@ -86,6 +99,11 @@ public class CreateCustomerController implements Initializable {
 
     }
 
+    /**
+     * This method populates the division combo box with the first level divisions associated with the country selected.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onActionSelectCountry(ActionEvent event) throws SQLException {
 
@@ -101,6 +119,11 @@ public class CreateCustomerController implements Initializable {
         divisionCmbBx.setItems(divisionList);
     }
 
+    /**
+     * This method is run when the window is initialized and here the country combo box is populated.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
